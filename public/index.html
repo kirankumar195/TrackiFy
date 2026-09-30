@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TrackiFy</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<main id="auth"><section class="card auth"><h1>TrackiFy</h1><p class="sub">Log meals, build habits, watch your progress.</p>
+<div class="tabs"><button data-tab="login" class="on">Log in</button><button data-tab="register">Create account</button></div>
+<form id="login"><label>Email<input name="email" type="email" required autocomplete="email"></label>
+<label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+<button class="primary">Log in</button><p class="msg" id="loginMsg"></p></form>
+<form id="register" hidden><label>Full name<input name="name" required pattern="[A-Za-z][A-Za-z .'\-]{1,39}" title="2–40 letters only"></label>
+<label>Email<input name="email" type="email" required></label>
+<label>Password<input name="password" type="password" required pattern="(?=.*[A-Za-z])(?=.*\d).{8,64}" title="8–64 characters with at least one letter and one number" autocomplete="new-password"></label>
+<div class="row"><label>Age<input name="age" type="number" required min="12" max="100" step="1"></label>
+<label>Height (cm)<input name="heightCm" type="number" required min="100" max="250" step="0.1"></label>
+<label>Weight (kg)<input name="weightKg" type="number" required min="25" max="300" step="0.1"></label></div>
+<div class="row"><label>Daily calorie goal<input name="goalCalories" type="number" required min="1000" max="6000" step="1" value="2000"></label>
+<label>Your goal<select name="goal" required><option value="lose">Lose weight</option><option value="maintain" selected>Maintain weight</option><option value="gain">Gain weight</option></select></label></div>
+<button class="primary">Create account</button><p class="msg" id="regMsg"></p></form></section></main>
+
+<div id="app" hidden><header><h1>TrackiFy</h1><span id="hi"></span><label class="date">Day <input type="date" id="day"></label><button id="out">Log out</button></header>
+<main class="grid">
+<section class="hero card"><div><p class="big" id="left">0</p><p id="leftLbl">kcal left today</p></div><div class="stats"><p><b id="bmi">–</b>BMI</p><p><b id="streak">0</b>day streak</p><p><b id="goalTxt">–</b>daily goal</p></div></section>
+<section class="card"><h2>Calories, last 7 days</h2><canvas id="cCal"></canvas></section>
+<section class="card"><h2>Weight trend (kg)</h2><canvas id="cWt"></canvas></section>
+<section class="card"><h2>Add food</h2><form id="meal"><label>Food<input name="name" required pattern="[A-Za-z][A-Za-z0-9 ,.'()\-]{1,39}" title="2–40 characters, starting with a letter"></label>
+<div class="row"><label>Meal<select name="type"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snack</option></select></label>
+<label>Calories<input name="calories" type="number" required min="1" max="3000" step="1"></label></div>
+<button class="primary">Add food</button><p class="msg" id="mealMsg"></p></form><ul id="meals"></ul></section>
+<section class="card"><h2>Daily habits</h2><form id="habit"><div class="row"><label>Water (glasses)<input name="water" type="number" required min="0" max="20" step="1"></label>
+<label>Steps<input name="steps" type="number" required min="0" max="60000" step="1"></label></div>
+<div class="row"><label>Sleep (hours)<input name="sleep" type="number" required min="0" max="16" step="0.5"></label>
+<label>Workout (min)<input name="workout" type="number" required min="0" max="300" step="1"></label></div>
+<label>Weight today (kg, optional)<input name="weight" type="number" min="25" max="300" step="0.1"></label>
+<button class="primary">Save habits</button><p class="msg" id="habMsg"></p></form><div id="bars"></div></section>
+</main></div><script src="app.js"></script></body></html>
